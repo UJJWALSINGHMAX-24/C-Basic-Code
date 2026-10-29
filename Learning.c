@@ -5,29 +5,58 @@
 int main()
 {
 
-    char UserName[50];
-    int UserAge;
-    char UserCountry[50];
+    bool VotingMachineIsRunning = true;
 
-    printf("Enter Your Name : ");
-    fgets(UserName, sizeof(UserName), stdin);
+    while (VotingMachineIsRunning)
+    {
+        char UserName[50];
+        int UserAge;
+        char UserCountry[50];
+        char UserContinue[2];
 
-    UserName[strcspn(UserName, "\n")] = '\0';
+        printf("Enter Your Name : ");
+        fgets(UserName, sizeof(UserName), stdin);
 
-    printf("Enter Your Age : ");
-    scanf("%d", &UserAge);
+        UserName[strcspn(UserName, "\n")] = '\0';
 
-    while (getchar() != '\n')
-        ;
+        printf("Enter Your Age : ");
+        scanf("%d", &UserAge);
 
-    printf("Enter Your Country Name : ");
-    fgets(UserCountry, sizeof(UserCountry), stdin);
-    UserCountry[strcspn(UserCountry, "\n")] = '\0';
+        while (getchar() != '\n')
+            ;
 
-    printf("\n--- Details ---\n");
-    printf("Name: %s\n", UserName);
-    printf("Age: %d\n", UserAge);
-    printf("Country: %s\n", UserCountry);
+        printf("Enter Your Country Name : ");
+        fgets(UserCountry, sizeof(UserCountry), stdin);
+        UserCountry[strcspn(UserCountry, "\n")] = '\0';
+
+        if (UserAge >= 18 && UserCountry == "Bharat")
+        {
+            printf("You Can Vote Now.\n");
+            printf("You Choose Party For Vote.\n");
+            printf("You Are Bharat Member.\n");
+        }
+        else if (UserCountry != "Bharat")
+        {
+            printf("You Are Not A Bharat Member.\n");
+        }
+        else
+        {
+            printf("Age Minner [ Under 18 ]");
+        }
+        printf("Thankyou For Vote.\n");
+
+        printf("You Continue Voting Machine Press ( Y / N ). \n");
+
+        if (UserContinue == "N" || UserContinue == "n")
+        {
+            VotingMachineIsRunning = false;
+            printf("Voting Machine Shutdown.");
+        }
+        else
+        {
+            printf("New User For Vote\n");
+        }
+    }
 
     return 0;
 }
