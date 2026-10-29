@@ -4,7 +4,6 @@
 
 int main()
 {
-
     bool VotingMachineIsRunning = true;
 
     while (VotingMachineIsRunning)
@@ -12,11 +11,14 @@ int main()
         char UserName[50];
         int UserAge;
         char UserCountry[50];
-        char UserContinue[2];
+        char UserContinue[10];
+
+        printf("----------------------------\n");
+        printf("       VOTING MACHINE       \n");
+        printf("----------------------------\n\n");
 
         printf("Enter Your Name : ");
         fgets(UserName, sizeof(UserName), stdin);
-
         UserName[strcspn(UserName, "\n")] = '\0';
 
         printf("Enter Your Age : ");
@@ -29,32 +31,34 @@ int main()
         fgets(UserCountry, sizeof(UserCountry), stdin);
         UserCountry[strcspn(UserCountry, "\n")] = '\0';
 
-        if (UserAge >= 18 && UserCountry == "Bharat")
+        if (UserAge >= 18 && strcmp(UserCountry, "Bharat") == 0)
         {
-            printf("You Can Vote Now.\n");
+            printf("\nYou Can Vote Now.\n");
             printf("You Choose Party For Vote.\n");
-            printf("You Are Bharat Member.\n");
+            printf("You Are Bharat Member.\n\n");
         }
-        else if (UserCountry != "Bharat")
+        else if (strcmp(UserCountry, "Bharat") != 0)
         {
-            printf("You Are Not A Bharat Member.\n");
+            printf("\nYou Are Not A Bharat Member.\n");
         }
         else
         {
-            printf("Age Minner [ Under 18 ]");
+            printf("Age Minner [ Under 18 ]\n");
         }
-        printf("Thankyou For Vote.\n");
+        printf("\nThankyou For Vote.\n");
 
-        printf("You Continue Voting Machine Press ( Y / N ). \n");
+        printf("\nYou Continue Voting Machine Press ( Y / N ): ");
+        fgets(UserContinue, sizeof(UserContinue), stdin);
+        UserContinue[strcspn(UserContinue, "\n")] = '\0';
 
-        if (UserContinue == "N" || UserContinue == "n")
+        if (strcmp(UserContinue, "N") == 0 || strcmp(UserContinue, "n") == 0)
         {
             VotingMachineIsRunning = false;
-            printf("Voting Machine Shutdown.");
+            printf("Voting Machine Shutdown.\n");
         }
         else
         {
-            printf("New User For Vote\n");
+            printf("\nNew User For Vote\n");
         }
     }
 
